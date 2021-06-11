@@ -1,33 +1,35 @@
 default: debug
 
+image = atlas/analysisbase:22.2.27
+
 debug:
 	docker run --rm -ti \
 		-v $(shell pwd):$(shell pwd) \
 		-w $(shell pwd) \
-		atlas/analysisbase:22.2.27
+		$(image)
 
 build-docker:
-	docker pull atlas/analysisbase:22.2.27
+	docker pull $(image)
 	docker run --rm -ti \
 		-v $(shell pwd):$(shell pwd) \
 		-w $(shell pwd) \
-		atlas/analysisbase:22.2.27 \
+		$(image) \
 		/bin/bash -c 'bash build.sh'
 
 tests-docker:
-	docker pull atlas/analysisbase:22.2.27
+	docker pull $(image)
 	docker run --rm -ti \
 		-v $(shell pwd):$(shell pwd) \
 		-w $(shell pwd) \
-		atlas/analysisbase:22.2.27 \
+		$(image) \
 		/bin/bash -c 'bash test_runner.sh'
 
 ci-docker:
-	docker pull atlas/analysisbase:22.2.27
+	docker pull $(image)
 	docker run --rm -ti \
 		-v $(shell pwd):$(shell pwd) \
 		-w $(shell pwd) \
-		atlas/analysisbase:22.2.27 \
+		$(image) \
 		/bin/bash -c 'bash tests/ci.sh'
 
 clean-artifacts: $(eval SHELL:=/bin/bash)
