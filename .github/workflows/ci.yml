@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+  # Run weekly on Sunday at 0:01 UTC
+  schedule:
+  - cron:  '1 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+  test:
+
+    runs-on: ${{ matrix.os }}
+    container:
+      image: ${{ matrix.image }}
+      options: --user root
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        image: ["atlas/analysisbase:22.2.27"]
+
+    steps:
+
+    # Forced to use checkout@v1 as CentOS 7's Git version is too old
+    # to use checkout@v2 (needs Git v2.18+)
+    - uses: actions/checkout@v1
+      with:
+        submodules: true
+
+    - name: Build with ATLAS CMake
+      run: |
+        bash build.sh
+
+    - name: Check working environment variables
+      run: |
+        printf '#!/bin/bash\n\n. setup.sh\nprintenv\n' > /tmp/_printenv.sh
+        bash /tmp/_printenv.sh
+
+    - name: Run tests with pytest
+      run: |
+        bash test_runner.sh
