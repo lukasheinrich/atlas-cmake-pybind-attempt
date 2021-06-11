@@ -2,8 +2,19 @@
 
 ## Getting Started
 
+```console
+$ make debug
 ```
-make 
-bash build.sh
-bash test_runner.sh
+
+### Build locally in an AnalysisBase Docker image
+
+```console
+$ make build-docker
+$ make debug
+```
+
+### Build and run tests locally in an AnalysisBase Docker image
+
+```console
+$ make ci-docker
 ```
