@@ -1,0 +1,11 @@
+build/
+
+*.py[co]
+__pycache__
+*.egg-info
+*.eggs
+*~
+*.bak
+.ipynb_checkpoints
+.tox
+.DS_Store
