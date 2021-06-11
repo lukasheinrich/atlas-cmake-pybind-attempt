@@ -5,7 +5,6 @@
 #include <iostream>
 
 TestClass::TestClass(){
-    
 }
 
 int TestClass::runit(int a, int b){

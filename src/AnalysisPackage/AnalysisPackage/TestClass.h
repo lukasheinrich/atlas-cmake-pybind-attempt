@@ -7,6 +7,8 @@ class TestClass{
         TestClass();
         int runit(int a, int b);
         std::vector<double> test_create_container();
+
+    private:
 };
 
 #endif

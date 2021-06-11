@@ -9,6 +9,7 @@ atlas_add_library( AnalysisPackageLib
    AnaAlgorithmLib
    xAODEgamma
    xAODCore
+   PATInterfaces
 )
 
 atlas_add_executable( AnalysisPackageRunner
