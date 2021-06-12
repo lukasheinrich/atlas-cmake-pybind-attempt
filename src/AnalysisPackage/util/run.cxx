@@ -2,6 +2,7 @@
 #include <memory>
 #include "AnalysisPackage/TestClass.h"
 #include "AnalysisPackage/ISomeCPTool.h"
+#include "AnalysisPackage/SomeCPTool.h"
 #include "xAODEgamma/ElectronContainer.h"
 #include "xAODEgamma/Electron.h"
 #include <xAODCore/AuxContainerBase.h>
@@ -24,10 +25,9 @@ int main(){
     electrons->push_back(new xAOD::Electron());
     electrons->at(0)->setPt(3.141);
 
-    ToolHandle<CP::ISomeCPTool> th("SomeCPTool");
-    th.retrieve();
-    
-    th->applyCorrection(*(electrons->at(0)));
+    CP::SomeCPTool t("tool");
+    auto sc = t.applyCorrection(*(electrons->at(0)));
+    sc.ignore();
 
     std::cout << "bye" << std::endl;
     return 0;

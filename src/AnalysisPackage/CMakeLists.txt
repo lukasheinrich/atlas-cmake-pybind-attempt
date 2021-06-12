@@ -10,6 +10,7 @@ atlas_add_library( AnalysisPackageLib
    xAODEgamma
    xAODCore
    PATInterfaces
+   AsgTools
 )
 
 atlas_add_executable( AnalysisPackageRunner
