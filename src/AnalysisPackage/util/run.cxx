@@ -8,6 +8,7 @@
 #include <xAODCore/AuxContainerBase.h>
 #include <AsgTools/ToolHandle.h>
 #include <AsgTools/AnaToolHandle.h>
+#include <AsgTools/AsgToolConfig.h>
 #include "PATInterfaces/CorrectionCode.h"
 #include "EgammaAnalysisInterfaces/IEgammaCalibrationAndSmearingTool.h"
 
@@ -30,8 +31,25 @@ int main(){
 
     std::cout << "before: " << electrons->at(0)->pt() << std::endl;
 
-    CP::SomeCPTool t("tool");
-    t.applyCorrection(*(electrons->at(0)));
+
+    // asg::AsgToolConfig cfg("CP::EgammaCalibrationAndSmearingTool/tool");
+    // std::shared_ptr<void> cleanup;
+    // ToolHandle<CP::IEgammaCalibrationAndSmearingTool> th;
+    // cfg.setProperty<std::string>("ESModel","es2015PRE");
+    // cfg.makeTool(th, cleanup);
+    // std::cout << th.operator->() << std::endl;
+
+
+    asg::AsgToolConfig cfg("CP::SomeCPTool/tool");
+    cfg.setProperty("MyIncrement",2.0);
+
+    std::shared_ptr<void> cleanup;
+    ToolHandle<CP::ISomeCPTool> th;
+    cfg.makeTool(th, cleanup);
+
+
+    th.retrieve();
+    th->applyCorrection(*(electrons->at(0)));
 
     std::cout << "after: " << electrons->at(0)->pt() << std::endl;
 

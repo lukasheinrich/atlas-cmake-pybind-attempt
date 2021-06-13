@@ -5,5 +5,6 @@
 // dictionaries for.
 
 #include <AnalysisPackage/UserAlgorithm.h>
+#include <AnalysisPackage/SomeCPTool.h>
 
 #endif

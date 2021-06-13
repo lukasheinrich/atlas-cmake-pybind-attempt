@@ -1,8 +1,10 @@
 #include "AnalysisPackage/SomeCPTool.h"
 #include "PATInterfaces/CorrectionCode.h"
 #include "xAODEgamma/Egamma.h"
+#include <iostream>
 
 CP::SomeCPTool::SomeCPTool(const std::string& name) : asg::AsgTool(name) {    
+    declareProperty("MyIncrement", m_increment = 1.0);
 }
 
 
@@ -11,7 +13,8 @@ StatusCode CP::SomeCPTool::initialize() {
 }
 
 CP::CorrectionCode CP::SomeCPTool::applyCorrection(xAOD::Egamma& e) {
-    e.setPt(e.pt() + 1.0);
+    std::cout << "IINC" << m_increment << std::endl;
+    e.setPt(e.pt() + m_increment);
     return CP::CorrectionCode::Ok;
 }
 
