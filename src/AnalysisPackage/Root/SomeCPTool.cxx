@@ -1,6 +1,6 @@
 #include "AnalysisPackage/SomeCPTool.h"
 #include "PATInterfaces/CorrectionCode.h"
-
+#include "xAODEgamma/Egamma.h"
 
 CP::SomeCPTool::SomeCPTool(const std::string& name) : asg::AsgTool(name) {    
 }
@@ -10,7 +10,8 @@ StatusCode CP::SomeCPTool::initialize() {
     return StatusCode::SUCCESS;
 }
 
-CP::CorrectionCode CP::SomeCPTool::applyCorrection(xAOD::Egamma&) {
+CP::CorrectionCode CP::SomeCPTool::applyCorrection(xAOD::Egamma& e) {
+    e.setPt(e.pt() + 1.0);
     return CP::CorrectionCode::Ok;
 }
 

@@ -11,6 +11,7 @@ atlas_add_library( AnalysisPackageLib
    xAODCore
    PATInterfaces
    AsgTools
+   EgammaAnalysisInterfacesLib
 )
 
 atlas_add_executable( AnalysisPackageRunner
@@ -25,6 +26,8 @@ atlas_add_executable( AnalysisPackageRunner
 atlas_add_dictionary( AnalysisPackageDict
    AnalysisPackage/AnalysisPackageDict.h
    AnalysisPackage/selection.xml
-   LINK_LIBRARIES AnalysisPackageLib )
+   LINK_LIBRARIES
+   AnalysisPackageLib
+)
 
 

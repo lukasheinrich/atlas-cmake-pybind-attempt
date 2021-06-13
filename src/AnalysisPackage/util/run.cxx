@@ -7,7 +7,9 @@
 #include "xAODEgamma/Electron.h"
 #include <xAODCore/AuxContainerBase.h>
 #include <AsgTools/ToolHandle.h>
+#include <AsgTools/AnaToolHandle.h>
 #include "PATInterfaces/CorrectionCode.h"
+#include "EgammaAnalysisInterfaces/IEgammaCalibrationAndSmearingTool.h"
 
 int main(){
     std::cout << "hello" << std::endl;
@@ -25,9 +27,13 @@ int main(){
     electrons->push_back(new xAOD::Electron());
     electrons->at(0)->setPt(3.141);
 
+
+    std::cout << "before: " << electrons->at(0)->pt() << std::endl;
+
     CP::SomeCPTool t("tool");
-    auto sc = t.applyCorrection(*(electrons->at(0)));
-    sc.ignore();
+    t.applyCorrection(*(electrons->at(0)));
+
+    std::cout << "after: " << electrons->at(0)->pt() << std::endl;
 
     std::cout << "bye" << std::endl;
     return 0;
