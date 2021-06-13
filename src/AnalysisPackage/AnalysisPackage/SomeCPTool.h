@@ -5,7 +5,7 @@
 namespace CP {
 
     class SomeCPTool : virtual public CP::ISomeCPTool, public asg::AsgTool {
-        ASG_TOOL_CLASS2( SomeCPTool, ISomeCPTool, asg::AsgTool) 
+        ASG_TOOL_CLASS (SomeCPTool, ISomeCPTool)
 
     public:
 
@@ -18,6 +18,9 @@ namespace CP {
         virtual SystematicSet recommendedSystematics() const override;
         bool isAffectedBySystematic( const SystematicVariation& systematic ) const override {return false;};
         virtual StatusCode applySystematicVariation(const CP::SystematicSet&) override;
+    
+    private:
+        float m_increment;
     };      
 
 

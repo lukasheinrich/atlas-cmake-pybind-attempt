@@ -4,5 +4,6 @@
        should be created. -->
 
   <class name="UserAlgorithm" />
+  <class name="CP::SomeCPTool" />
    
 </lcgdict>
