@@ -1,4 +1,5 @@
 build/
+core
 
 *.py[co]
 __pycache__
